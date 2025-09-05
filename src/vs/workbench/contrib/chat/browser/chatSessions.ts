@@ -272,6 +272,7 @@ export class ChatSessionsView extends Disposable implements IWorkbenchContributi
 		@IConfigurationService private readonly configurationService: IConfigurationService,
 		@IInstantiationService private readonly instantiationService: IInstantiationService,
 		@IChatSessionsService private readonly chatSessionsService: IChatSessionsService,
+		@IContextKeyService private readonly contextKeyService: IContextKeyService,
 	) {
 		super();
 
@@ -314,6 +315,21 @@ export class ChatSessionsView extends Disposable implements IWorkbenchContributi
 
 	private registerViewContainer(): void {
 		if (this.isViewContainerRegistered) {
+			return;
+		}
+
+		const copilotEnabledExpr = ContextKeyExpr.or(
+			ContextKeyExpr.and(
+				ChatContextKeys.Setup.hidden.negate(),
+				ChatContextKeys.Setup.disabled.negate()
+			),
+			ContextKeyExpr.and(
+				ChatContextKeys.Setup.installed,
+				ChatContextKeys.Setup.disabled.negate()
+			));
+
+		const isCopilotEnabled = this.contextKeyService.contextMatchesRules(copilotEnabledExpr);
+		if (!isCopilotEnabled) {
 			return;
 		}
 
@@ -710,14 +726,15 @@ class ChatSessionsViewPaneContainer extends ViewPaneContainer {
 			// Register views in priority order: local, history, then alphabetically sorted others
 			const orderedProviders = [
 				...(localProvider ? [{ provider: localProvider, displayName: 'Local Chat Sessions', baseOrder: 0 }] : []),
-				...(historyProvider ? [{ provider: historyProvider, displayName: 'History', baseOrder: 1 }] : []),
+				...(historyProvider ? [{ provider: historyProvider, displayName: 'History', baseOrder: 1, when: undefined }] : []),
 				...providersWithDisplayNames.map((item, index) => ({
 					...item,
-					baseOrder: 2 + index // Start from 2 for other providers
+					baseOrder: 2 + index, // Start from 2 for other providers
+					when: undefined,
 				}))
 			];
 
-			orderedProviders.forEach(({ provider, displayName, baseOrder }) => {
+			orderedProviders.forEach(({ provider, displayName, baseOrder, when }) => {
 				// Only register if not already registered
 				if (!this.registeredViewDescriptors.has(provider.chatSessionType)) {
 					const viewDescriptor: IViewDescriptor = {
@@ -730,6 +747,7 @@ class ChatSessionsViewPaneContainer extends ViewPaneContainer {
 						canToggleVisibility: true,
 						canMoveView: true,
 						order: baseOrder, // Use computed order based on priority and alphabetical sorting
+						when,
 					};
 
 					viewDescriptorsToRegister.push(viewDescriptor);
@@ -1711,7 +1729,7 @@ class SessionsViewPane extends ViewPane {
 					const providerType = sessionWithProvider.provider.chatSessionType;
 					const options: IChatEditorOptions = {
 						pinned: true,
-						preferredTitle: truncate(element.label, 20),
+						preferredTitle: truncate(element.label, 30),
 						preserveFocus: true,
 					};
 					await this.editorService.openEditor({
@@ -1746,7 +1764,7 @@ class SessionsViewPane extends ViewPane {
 			const options: IChatEditorOptions = {
 				pinned: true,
 				ignoreInView: true,
-				preferredTitle: truncate(element.label, 20),
+				preferredTitle: truncate(element.label, 30),
 				preserveFocus: true,
 			};
 			await this.editorService.openEditor({
