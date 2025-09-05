@@ -1299,6 +1299,16 @@ begin
   Result := ExpandConstant('{param:update|false}') <> 'false';
 end;
 
+procedure InitializeWizard();
+begin
+  // Настройка позиционирования иконки в установщике
+  // Сдвигаем иконку влево и поднимаем намного выше, чтобы она полностью помещалась в окне
+  WizardForm.WizardSmallBitmapImage.Left := WizardForm.WizardSmallBitmapImage.Left - 2;
+  WizardForm.WizardSmallBitmapImage.Top := WizardForm.WizardSmallBitmapImage.Top + 2;
+  // Устанавливаем высокий приоритет отрисовки, чтобы иконка была поверх всех элементов
+  WizardForm.WizardSmallBitmapImage.BringToFront;
+end;
+
 function IsNotBackgroundUpdate(): Boolean;
 begin
   Result := not IsBackgroundUpdate();
