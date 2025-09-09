@@ -62,11 +62,11 @@ VSCodium - это кастомизированная версия Visual Studio 
 - Проект загружен на GitHub: https://github.com/webdes27/VSCodium.git
 - Настроена синхронизация с upstream для будущих обновлений
 
-### 9. Создание кастомной темы Cursor
-- Создана папка `extensions/theme-cursor/` для кастомной темы
+### 9. Создание кастомной темы VSCodium
+- Создана папка `extensions/theme-vscodium/` для кастомной темы
 - Проанализирована оригинальная тема Cursor IDE из `D:\Source\VSCoder\Primer\theme-cursor\themes\cursor-dark-color-theme.json`
 - Создан `package.json` для темы с правильными настройками
-- Создан `themes/cursor-dark.json` с точной копией цветовой схемы оригинальной темы Cursor
+- Создан `themes/vscodium-dark.json` с точной копией цветовой схемы оригинальной темы Cursor
 - **Цветовая схема темы:**
   - Фон редактора: `#191919` (как в оригинальной теме Cursor)
   - Фон панелей: `#141414`
@@ -86,7 +86,7 @@ VSCodium - это кастомизированная версия Visual Studio 
 ✅ **Настроена правильная структура Git**  
 ✅ **Выполнен полный ребрендинг в VSCodium**  
 ✅ **Настроена автоматическая синхронизация с Microsoft VSCode**  
-✅ **Создана кастомная тема Cursor с точной цветовой схемой**
+✅ **Создана кастомная тема VSCodium с точной цветовой схемой**
 
 ## Структура проекта
 ```
@@ -95,10 +95,10 @@ VSCodium/
 ├── build/                  # Скрипты сборки Microsoft
 ├── scripts/               # Скрипты запуска
 ├── extensions/            # Кастомные расширения
-│   └── theme-cursor/      # Тема Cursor IDE
+│   └── theme-vscodium/    # Тема VSCodium Dark
 │       ├── package.json   # Конфигурация темы
 │       └── themes/        # Файлы тем
-│           └── cursor-dark.json # Тема Cursor Dark
+│           └── vscodium-dark.json # Тема VSCodium Dark
 ├── package.json           # Конфигурация (версия 1.105.0, коммит 3ae3f484c64)
 ├── product.json           # Настройки продукта
 ├── .gitignore            # Исключения для Git
@@ -115,8 +115,8 @@ VSCodium/
 - **resources/win32/inno-*.bmp**: Иконки установщика (разные размеры DPI)
 - **scripts/code.bat**: Официальный скрипт запуска VS Code
 - **out/main.js**: Скомпилированная точка входа приложения
-- **extensions/theme-cursor/package.json**: Конфигурация кастомной темы Cursor
-- **extensions/theme-cursor/themes/cursor-dark.json**: Файл темы с цветовой схемой Cursor IDE
+- **extensions/theme-vscodium/package.json**: Конфигурация кастомной темы VSCodium
+- **extensions/theme-vscodium/themes/vscodium-dark.json**: Файл темы с цветовой схемой VSCodium Dark
 
 ## Команды для работы
 ```bash
@@ -163,7 +163,7 @@ npm install
 - **2025-01-05**: Кастомизация иконок и установщика
 - **2025-01-05**: Обновление до VSCode 1.105.0 (коммит 3ae3f484c64) с синхронизацией upstream
 - **2025-01-05**: Финальная сборка и тестирование VSCodium 1.105.0
-- **2025-01-09**: Создание кастомной темы Cursor с точной цветовой схемой оригинальной темы Cursor IDE
+- **2025-01-09**: Создание кастомной темы VSCodium с точной цветовой схемой оригинальной темы Cursor IDE
 
 ---
 
