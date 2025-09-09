@@ -1,0 +1,32 @@
+{
+  "name": "theme-vscodium",
+  "displayName": "VSCodium Dark",
+  "description": "Default VSCodium themes",
+  "version": "1.0.0",
+  "publisher": "vscodium",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "VSCodium Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/vscodium-dark.json"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webdes27/VSCodium.git"
+  },
+  "keywords": [
+    "theme",
+    "dark",
+    "vscodium",
+    "cursor"
+  ]
+}
