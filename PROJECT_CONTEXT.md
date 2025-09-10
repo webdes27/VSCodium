@@ -1,11 +1,11 @@
 # VSCodium - Контекст проекта для Cursor AI
 
 ## Версия и основа
-**Версия Visual Studio Code**: 1.104.0 (коммит 0762fda13da)
+**Версия Visual Studio Code**: 1.105.0 (коммит 179e2b848ee)
 **Репозиторий**: https://github.com/webdes27/VSCodium.git  
 **Основан на**: Официальный Microsoft VS Code из https://github.com/microsoft/vscode  
 **Upstream**: Настроена синхронизация с Microsoft VSCode для автоматических обновлений  
-**Последний upstream коммит**: c5866c144be (Fire event on assignment context updates)
+**Последний upstream коммит**: ffabf6a1b31 (layout - allow default views to restore in primary sidebar)
 
 ## Краткое описание проекта
 VSCodium - это кастомизированная версия Visual Studio Code, собранная из исходного кода Microsoft. Проект позволяет создавать собственные установщики и модифицировать функциональность VS Code.
@@ -94,6 +94,20 @@ VSCodium - это кастомизированная версия Visual Studio 
 - Обновление иконок установщика (`code_150x150.png`, `code_70x70.png`)
 - Обновление favicon (`favicon.ico`)
 
+### 12. Синхронизация с upstream (январь 2025)
+- Выполнена синхронизация с официальным репозиторием Microsoft VSCode
+- **Коммит слияния**: 179e2b848ee (Merge remote-tracking branch 'upstream/main')
+- **Последний upstream коммит**: ffabf6a1b31 (layout - allow default views to restore in primary sidebar)
+- Получены обновления: 297 файлов изменено, 4,187 добавлений, 3,282 удалений
+- **Новые функции**:
+  - Улучшения в layout и sidebar
+  - Обновления в chat и AI функциях
+  - Исправления в terminal и PowerShell (PSReadLine)
+  - Улучшения в authentication
+  - Обновления в extensions и marketplace
+  - Новые компоненты MCP (Model Context Protocol)
+- Проект пересобран с сохранением всех кастомных изменений VSCodium
+
 ## Текущее состояние
 ✅ **VSCodium 1.105.0 успешно собран и запускается**  
 ✅ **Создан кастомизированный установщик Windows**  
@@ -105,7 +119,8 @@ VSCodium - это кастомизированная версия Visual Studio 
 ✅ **Тема VSCodium Dark интегрирована в приложение как встроенное расширение**  
 ✅ **Проект пересобран с обновленной темой и всеми исправлениями**  
 ✅ **Activity Bar модифицирован для горизонтального расположения в верхней части боковой панели**  
-✅ **Обновлены иконки приложения и установщика**
+✅ **Обновлены иконки приложения и установщика**  
+✅ **Синхронизирован с последними обновлениями Microsoft VSCode (коммит ffabf6a1b31)**
 
 ## Структура проекта
 ```
@@ -118,7 +133,7 @@ VSCodium/
 │       ├── package.json   # Конфигурация темы
 │       └── themes/        # Файлы тем
 │           └── vscodium-dark.json # Тема VSCodium Dark
-├── package.json           # Конфигурация (версия 1.105.0, коммит 3ae3f484c64)
+├── package.json           # Конфигурация (версия 1.105.0, коммит 179e2b848ee)
 ├── product.json           # Настройки продукта
 ├── .gitignore            # Исключения для Git
 ├── INSTALLATION_GUIDE.md # Руководство по установке
@@ -126,7 +141,7 @@ VSCodium/
 ```
 
 ## Ключевые файлы
-- **package.json**: Основная конфигурация проекта (версия 1.105.0, коммит 3ae3f484c64)
+- **package.json**: Основная конфигурация проекта (версия 1.105.0, коммит 179e2b848ee)
 - **product.json**: Настройки продукта VSCodium (название, иконки, etc.)
 - **build/gulpfile.js**: Конфигурация сборки (destinationFolderName = "VSCodium")
 - **build/win32/code.iss**: Inno Setup скрипт с кастомным позиционированием иконки
@@ -188,6 +203,7 @@ npm install
 - **2025-01-09**: Финальная пересборка проекта VSCodium с темой VSCodium Dark
 - **2025-01-09**: Модификация Activity Bar - изменение с вертикального на горизонтальное расположение
 - **2025-01-09**: Обновление иконок приложения и финальная пересборка с горизонтальным Activity Bar
+- **2025-01-10**: Синхронизация с upstream Microsoft VSCode (коммит ffabf6a1b31) - получены обновления layout, chat, AI, terminal, authentication
 
 ---
 
