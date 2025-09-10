@@ -97,7 +97,7 @@ export class GlobalCompositeBar extends Disposable {
 
 				throw new Error(`No view item for action '${action.id}'`);
 			},
-			orientation: ActionsOrientation.VERTICAL,
+			orientation: ActionsOrientation.HORIZONTAL,
 			ariaLabel: localize('manage', "Manage"),
 			preventLoopNavigation: true
 		}));
