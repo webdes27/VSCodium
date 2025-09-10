@@ -48,12 +48,10 @@ export class ActivitybarPart extends Part {
 	static readonly viewContainersWorkspaceStateKey = 'workbench.activity.viewletsWorkspaceState';
 
 	//#region IView
-
 	readonly minimumWidth: number = 0;
 	readonly maximumWidth: number = Number.POSITIVE_INFINITY;
 	readonly minimumHeight: number = 48;
 	readonly maximumHeight: number = 48;
-
 	//#endregion
 
 	private readonly compositeBar = this._register(new MutableDisposable<PaneCompositeBar>());

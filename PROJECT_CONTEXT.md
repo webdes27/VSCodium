@@ -94,6 +94,15 @@ VSCodium - это кастомизированная версия Visual Studio 
 - Обновление иконок установщика (`code_150x150.png`, `code_70x70.png`)
 - Обновление favicon (`favicon.ico`)
 
+### 13. Интеграция расширения UnrealScript
+- Создано собственное встроенное расширение `unrealscript-syntax` для подсветки синтаксиса UnrealScript
+- Основано на структуре оригинального расширения [EliotVU/UnrealScript-Language-Service](https://github.com/EliotVU/UnrealScript-Language-Service)
+- Добавлена поддержка файлов `.uc` и `.uci`
+- Интегрированы сниппеты кода для UnrealScript
+- Расширение интегрировано как локальное встроенное расширение в `.build/builtInExtensions/`
+- Обеспечена подсветка синтаксиса UnrealScript по умолчанию в VSCodium
+- Создан тестовый файл `test.uc` для проверки функциональности
+
 ### 12. Синхронизация с upstream (январь 2025)
 - Выполнена синхронизация с официальным репозиторием Microsoft VSCode
 - **Коммит слияния**: 179e2b848ee (Merge remote-tracking branch 'upstream/main')
@@ -120,7 +129,8 @@ VSCodium - это кастомизированная версия Visual Studio 
 ✅ **Проект пересобран с обновленной темой и всеми исправлениями**  
 ✅ **Activity Bar модифицирован для горизонтального расположения в верхней части боковой панели**  
 ✅ **Обновлены иконки приложения и установщика**  
-✅ **Синхронизирован с последними обновлениями Microsoft VSCode (коммит ffabf6a1b31)**
+✅ **Синхронизирован с последними обновлениями Microsoft VSCode (коммит ffabf6a1b31)**  
+✅ **Интегрировано расширение UnrealScript для подсветки синтаксиса по умолчанию**
 
 ## Структура проекта
 ```
@@ -129,10 +139,14 @@ VSCodium/
 ├── build/                  # Скрипты сборки Microsoft
 ├── scripts/               # Скрипты запуска
 ├── extensions/            # Кастомные расширения
-│   └── theme-vscodium/    # Тема VSCodium Dark
-│       ├── package.json   # Конфигурация темы
-│       └── themes/        # Файлы тем
-│           └── vscodium-dark.json # Тема VSCodium Dark
+│   ├── theme-vscodium/    # Тема VSCodium Dark
+│   │   ├── package.json   # Конфигурация темы
+│   │   └── themes/        # Файлы тем
+│   │       └── vscodium-dark.json # Тема VSCodium Dark
+│   └── unrealscript-syntax/ # Расширение UnrealScript
+│       ├── package.json   # Конфигурация расширения
+│       ├── syntaxes/      # Файлы синтаксиса
+│       └── snippets/      # Сниппеты кода
 ├── package.json           # Конфигурация (версия 1.105.0, коммит 179e2b848ee)
 ├── product.json           # Настройки продукта
 ├── .gitignore            # Исключения для Git

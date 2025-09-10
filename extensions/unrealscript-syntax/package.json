@@ -1,0 +1,49 @@
+{
+    "name": "unrealscript-syntax",
+    "displayName": "UnrealScript Syntax",
+    "description": "UnrealScript syntax highlighting for VSCodium",
+    "version": "1.0.0",
+    "publisher": "VSCodium",
+    "engines": {
+        "vscode": "^1.75.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "keywords": [
+        "UnrealScript",
+        "UC",
+        "syntax",
+        "highlighting"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "unrealscript",
+                "aliases": [
+                    "UnrealScript",
+                    "unrealscript",
+                    "uc"
+                ],
+                "extensions": [
+                    ".uc",
+                    ".uci"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "unrealscript",
+                "scopeName": "source.uc",
+                "path": "./syntaxes/unrealscript.tmLanguage.json"
+            }
+        ],
+        "snippets": [
+            {
+                "language": "unrealscript",
+                "path": "./snippets/unrealscript.json"
+            }
+        ]
+    }
+}
