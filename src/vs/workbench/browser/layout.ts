@@ -721,7 +721,11 @@ export abstract class Layout extends Disposable implements IWorkbenchLayoutServi
 			if (viewContainerToRestore) {
 				this.state.initialization.views.containerToRestore.sideBar = viewContainerToRestore;
 			} else {
-				this.stateModel.setRuntimeValue(LayoutStateKeys.SIDEBAR_HIDDEN, true);
+				// For VSCodium, always show sidebar with default view container
+				const defaultViewContainer = this.viewDescriptorService.getDefaultViewContainer(ViewContainerLocation.Sidebar)?.id;
+				if (defaultViewContainer) {
+					this.state.initialization.views.containerToRestore.sideBar = defaultViewContainer;
+				}
 			}
 		}
 
@@ -2854,7 +2858,7 @@ class LayoutStateModel extends Disposable {
 		const workbenchState = this.contextService.getWorkbenchState();
 		const mainContainerDimension = configuration.mainContainerDimension;
 		LayoutStateKeys.SIDEBAR_SIZE.defaultValue = Math.min(300, mainContainerDimension.width / 4);
-		LayoutStateKeys.SIDEBAR_HIDDEN.defaultValue = workbenchState === WorkbenchState.EMPTY;
+		LayoutStateKeys.SIDEBAR_HIDDEN.defaultValue = false; // Always show sidebar by default for VSCodium
 		LayoutStateKeys.AUXILIARYBAR_SIZE.defaultValue = Math.min(300, mainContainerDimension.width / 4);
 		LayoutStateKeys.AUXILIARYBAR_HIDDEN.defaultValue = (() => {
 			const configuration = this.configurationService.inspect(WorkbenchLayoutSettings.AUXILIARYBAR_DEFAULT_VISIBILITY);
