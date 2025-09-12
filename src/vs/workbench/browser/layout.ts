@@ -736,7 +736,11 @@ export abstract class Layout extends Disposable implements IWorkbenchLayoutServi
 			if (viewContainerToRestore) {
 				this.state.initialization.views.containerToRestore.panel = viewContainerToRestore;
 			} else {
-				this.stateModel.setRuntimeValue(LayoutStateKeys.PANEL_HIDDEN, true);
+				// For VSCodium, always show panel with default view container (Terminal)
+				const defaultViewContainer = this.viewDescriptorService.getDefaultViewContainer(ViewContainerLocation.Panel)?.id;
+				if (defaultViewContainer) {
+					this.state.initialization.views.containerToRestore.panel = defaultViewContainer;
+				}
 			}
 		}
 
@@ -2744,7 +2748,7 @@ const LayoutStateKeys = {
 	ACTIVITYBAR_HIDDEN: new RuntimeStateKey<boolean>('activityBar.hidden', StorageScope.WORKSPACE, StorageTarget.MACHINE, false, true),
 	SIDEBAR_HIDDEN: new RuntimeStateKey<boolean>('sideBar.hidden', StorageScope.WORKSPACE, StorageTarget.MACHINE, false),
 	EDITOR_HIDDEN: new RuntimeStateKey<boolean>('editor.hidden', StorageScope.WORKSPACE, StorageTarget.MACHINE, false),
-	PANEL_HIDDEN: new RuntimeStateKey<boolean>('panel.hidden', StorageScope.WORKSPACE, StorageTarget.MACHINE, true),
+	PANEL_HIDDEN: new RuntimeStateKey<boolean>('panel.hidden', StorageScope.WORKSPACE, StorageTarget.MACHINE, false), // Always show panel by default for VSCodium
 	AUXILIARYBAR_HIDDEN: new RuntimeStateKey<boolean>('auxiliaryBar.hidden', StorageScope.WORKSPACE, StorageTarget.MACHINE, true),
 	STATUSBAR_HIDDEN: new RuntimeStateKey<boolean>('statusBar.hidden', StorageScope.WORKSPACE, StorageTarget.MACHINE, false, true)
 
